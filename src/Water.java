@@ -1,80 +1,54 @@
-//Een Pokemon klasse waarvan minimaal 2 `private` variabelen, 1 constructor, 2 methodes, 2 getters en 2 setters;
-//hp = hit points = how much damage a pokemon can receive (0-100%), if 0 than faint > needing: rest / potion / synthesis
 
-//bonus abstracte class
-public abstract class Pokemon {
-    private String name;
-    private int level;
-    private int hp;
-    private double height;
-    private double weight;
+//4 subklassen die, naast alles dat ze erven, zelf ook minimaal 2`private` variabelen, 1 constructor, 2 methodes, 1 `override` methode, 2 getters en 2 setters bevatten.
 
-    public Pokemon() {
+
+public class Water extends Pokemon {
+    private String weakness;
+    private int attack;
+
+    public Water(String name, int level, int hp, double height, double weight, String weakness) {
+        super(name, level, hp, height, weight);
+        this.weakness = weakness;
+        attack = 20;
     }
 
-    public Pokemon(String name, int level, int hp, double height, double weight) {
-        this.name = name;
-        this.level = level;
-        this.hp = hp;
-        this.height = height;
-        this.weight = weight;
+    //methods---------------------------------------------------------------------------------------------------------
+    public void raiseAttack(int amountRaiseAttack) {
+        System.out.print("The original attack is: " + attack + ".");
+        attack += amountRaiseAttack;
+        System.out.println(" After strengthening, attack is: " + attack);
     }
 
-
-    // methods ----------------------------------------------------------------------------------
-    public void printAbility() {
-        System.out.println("Pokemon " + name + " has the ability: blaze");
+    //Thunder Punch deals damage and has a 10% chance of paralyzing the target.
+    public void thunderPunch() {
+        System.out.print("Time for thunderpunch. YEAH! >>>>>> ");
+        double var = Math.random();
+        if (var <= 0.1) {
+            System.out.println("You are paralyzed.");
+        } else {
+            System.out.println("You have got damage.");
+        }
     }
 
-    // bonus abstracte methode
-    public abstract void printFood();
-
-
-    //Rain Dance causes a rain shower that lasts for 5 turns, and induces these additional effects:
-    //The power of Water-type moves increases by 50%.
-    //The power of Fire-type moves, Solar Beam and Solar Blade decreases by 50%.
-    public void raindance() {
-        System.out.println("Raindance: your power has been increased bij 50%.");
+    @Override
+    public void printFood() {
+        System.out.println("Pokemon " + getName() + " eats cyclons.");
     }
 
-    // gettersNsetters -----------------------------------------------------------------------------
-    public String getName() {
-        return name;
+    //gettersNsetters-------------------------------------------------------------------------------------------------
+    public String getWeakness() {
+        return weakness;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setWeakness(String weakness) {
+        this.weakness = weakness;
     }
 
-    public int getLevel() {
-        return level;
+    public int getAttack() {
+        return attack;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public int getHp() {
-        return hp;
-    }
-
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-    public void setHeight(double height) {
-        this.height = height;
-    }
-
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
+    public void setAttack(int attack) {
+        this.attack = attack;
     }
 }
